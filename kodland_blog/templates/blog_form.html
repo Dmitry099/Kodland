@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Добавление поста{% endblock %}
+{% block content %}
+<h3>Добавить статью</h3>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+    {% for field in form %}
+        <div class="fieldWrapper">
+        {% if field.label == 'Название статьи' %}
+            <div class="form_title">
+        {% else %}
+            <div>
+        {% endif %}
+        {{ field.errors }}
+        {{ field }}
+        {% if field.help_text %}
+            <p class="help">{{ field.help_text|safe }}</p>
+        {% endif %}
+        </div>
+    </div>
+{% endfor %}
+    <input id="input_button" type="submit" value="Опубликовать"/>
+</form>
+{% endblock %}

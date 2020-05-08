@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Новости{% endblock %}
+{% block content %}
+<div class="frame"></div>
+<div class="main_blog_title">
+    <h1>{{blog_list.first.title}}</h1>
+</div>
+<div class="main_log_text">
+    <p>{{blog_list.first.text}}</p>
+</div>
+{% if blog_list.first.image %}
+    <img class="main_image"src="{{ blog_list.first.image.url }}" />
+{% endif %}
+
+
+<button class="read_button" /><div class="text_in_read_button">Читать</div></button>
+
+<div class="other_blogs_frame">
+    <h3>Другие статьи</h3>
+    {% for blog in blog_list %}
+        {% if forloop.counter != 1 %}
+            <div class="other_blogs" >
+                {% if blog.image %}
+                                <img class='other_blogs_picturesrc' src="{{ blog.image.url }}" />
+                {% endif %}
+            <div class="other_blogs_title"> {{ blog.title }}</div>
+            </div>
+        {% endif %}
+    {% endfor %}
+
+</div>
+
+
+{% endblock %}
